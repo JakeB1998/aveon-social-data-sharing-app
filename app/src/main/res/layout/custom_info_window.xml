@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ProfilePicture"
+        android:layout_width="162dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/default_profile_picture" />
+
+    <TextView
+        android:id="@+id/ProfileName"
+        android:layout_width="159dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="40dp"
+        android:text="Name"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePicture" />
+
+    <TextView
+        android:id="@+id/ProfileStatus"
+        android:layout_width="159dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="120dp"
+        android:text="Status"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePicture" />
+</androidx.constraintlayout.widget.ConstraintLayout>

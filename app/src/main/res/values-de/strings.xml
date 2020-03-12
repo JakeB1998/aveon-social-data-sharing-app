@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAD Competition</string>
+    <string name="LoginBtnText">einloggen</string>
+    <string name="CreateAccountText">Konto erstellen</string>
+    <string name="NotYouText">Nicht du?</string>
+    <string name="SettingsText">Einstellungen</string>
+</resources>

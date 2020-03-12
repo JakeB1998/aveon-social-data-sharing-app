@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.madcompetition">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:excludeFromRecents="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Activties.ActivityProfileViewer"></activity>
+
+        <service
+            android:name=".LocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".Activties.ActivityFriendsList"
+            android:label="@string/title_activity_friends_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activties.ActivityImportAccount"
+            android:label="@string/title_activity_import_account"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".Activties.ActivityUserMap"
+            android:label="ActivityUserMap" />
+        <activity
+            android:name=".Activties.ActivityCreateAnAccountFinal"
+            android:label="@string/title_activity_create_an_account_final"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activties.ActivityCreateAnAccountSetupPart1"
+            android:label="@string/title_activity_create_an_account_setup_part1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activties.ActivityConversationInterface"
+            android:label="@string/title_activity_conversation_interface"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode ="adjustResize"
+        />
+        <activity
+            android:name=".Activties.ActivityMessagingInterface"
+            android:label="@string/title_activity_messaging_interface"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name=".BackroundBroadcastReciever">
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Activties.ActivityProfileSelection"
+            android:label="@string/title_activity_profile_selection"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activties.ActivityUserProfileView"
+            android:label="@string/title_activity_user_profile_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activties.ActivityCreateAnAccount" />
+        <activity
+            android:name=".Activties.ActivityDebug"
+            android:label="@string/title_activity_debug"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service android:name=".AlwaysRunService" />
+
+        <activity
+            android:name=".Activties.AdminMainScreenActivity"
+            android:label="@string/title_activity_admin_main_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activties.UserMainScreenActivity"
+            android:label="@string/title_activity_user_main_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activties.LoginScreenActivity"
+            android:label="Login Screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>
