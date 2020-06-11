@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_screen_gradient_animation"
+    android:orientation="vertical"
+    tools:context=".ProfileSelectionActivity">
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/CreateAccountBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:backgroundTint="#00FFFFFF"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="Create Account"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/ImportBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="Import Account"
+        android:textColor="#FFFFFF" />
+
+</FrameLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SwipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activties.Fragments.FriendListFragment">
+
+
+
+<FrameLayout
+    android:id="@+id/Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteSmoke"
+    tools:context=".activties.Fragments.FriendListFragment">
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:fontFamily="@font/open_sans"
+        android:gravity="center"
+        android:text="@string/FriendListText"
+        android:textAlignment="gravity"
+        android:textSize="18sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/border">
+
+        <LinearLayout
+            android:id="@+id/FriendListContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/BackBtn"
+        android:layout_width="64dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:backgroundTintMode="src_in"
+        android:scaleType="fitCenter"
+        android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SwipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activties.ActivityMessagingInterface">
+
+    <FrameLayout
+        android:id="@+id/Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activties.ActivityMessagingInterface">
+
+        <LinearLayout
+            android:id="@+id/MessagingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/name_conversation_border">
+
+                <ImageButton
+                    android:id="@+id/friendListBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/default_friend_list_foreground" />
+
+                <ImageButton
+                    android:id="@+id/ComposeMessage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right|top"
+                    android:background="@android:drawable/sym_action_email"
+                    android:backgroundTint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/ActivityTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Messages"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+            </FrameLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="675dp">
+
+                <LinearLayout
+                    android:id="@+id/ConversationContrainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/AddFriendBtn"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="top|left"
+            android:layout_marginLeft="55dp"
+            android:background="@drawable/circle_border"
+            android:backgroundTint="#00FFFFFF"
+            android:scaleType="centerCrop"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/default_add_friend_foreground" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ProfileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:src="@mipmap/default_profile_picture"
+            app:backgroundTint="#00FFFFFF"
+            app:fabCustomSize="50dp"
+            app:fabSize="auto"
+            app:maxImageSize="45dp"
+            app:rippleColor="#00FFFFFF" />
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

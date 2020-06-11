@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Dropdown_create_account_part1">
+    <item>Mercury</item>
+    <item>Venus</item>
+    <item>Earth</item>
+    <item>Mars</item>
+    <item>Jupiter</item>
+    <item>Saturn</item>
+    <item>Uranus</item>
+    <item>Neptune</item>
+    </string-array>
+
+    <string-array name="Map_Settings_Share_Options">
+        <item>Everyone</item>
+        <item>Friends Only</item>
+        <item>Disabled</item>
+
+    </string-array>
+
+    <string-array name="Encryption_Settings">
+        <item>AES</item>
+        <item>DES</item>
+        <item>Something</item>
+
+    </string-array>
+
+
+
+</resources>

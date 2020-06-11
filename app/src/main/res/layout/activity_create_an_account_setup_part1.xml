@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".activties.ActivityCreateAnAccountSetupPart1">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_activity_create_an_account_setup_part1" />
+
+    <ImageButton
+        android:id="@+id/BackBtn"
+        android:layout_width="64dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:backgroundTintMode="src_in"
+        android:scaleType="fitCenter"
+        android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

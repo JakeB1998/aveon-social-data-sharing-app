@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteSmoke"
+    tools:context=".activties.Fragments.ProfileLoaderFragment">
+
+    <ImageButton
+        android:id="@+id/BackBtn"
+        android:layout_width="64dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:backgroundTintMode="src_in"
+        android:scaleType="fitCenter"
+        android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageButton
+        android:id="@+id/SettingsBtn"
+        android:layout_width="71dp"
+        android:layout_height="68dp"
+        android:layout_gravity="right|top"
+        android:background="#00FFFFFF"
+        android:scaleType="center"
+        android:scaleX=".5"
+        android:scaleY=".5"
+        android:src="@mipmap/defualt_settings_icon_foreground" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ProfilePicture"
+            android:layout_width="128dp"
+            android:layout_height="137dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="140dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/default_profile_picture" />
+
+        <TextView
+            android:id="@+id/UsernameText"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="140dp"
+            android:gravity="center"
+            android:text="Test Username"
+            android:textAlignment="gravity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ProfilePicture" />
+
+        <TextView
+            android:id="@+id/FullNameText"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="85dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="284dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/UsernameText" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/LogOutBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:longClickable="true"
+                android:text="@string/LogOutText" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

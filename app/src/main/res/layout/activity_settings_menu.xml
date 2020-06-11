@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/MainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/whiteSmoke">
+
+            <LinearLayout
+                android:id="@+id/ScrollViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp">
+
+                    <TextView
+                        android:id="@+id/TitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/open_sans"
+                        android:gravity="center"
+                        android:text="Settings"
+                        android:textAlignment="inherit"
+                        android:textSize="36sp" />
+
+                    <ImageButton
+                        android:id="@+id/BackBtn"
+                        android:layout_width="64dp"
+                        android:layout_height="52dp"
+                        android:background="@android:color/transparent"
+                        android:backgroundTintMode="src_in"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+                </FrameLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/AccountSettingsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/name_conversation_border"
+                    android:backgroundTint="@color/whiteSmoke">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="82dp"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center|left"
+                        android:text="@string/AccountSettings"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="200dp"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="105dp"
+                        android:background="#000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/AssessiblityBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/name_conversation_border"
+                    android:backgroundTint="@color/whiteSmoke">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="82dp"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center|left"
+                        android:text="@string/Accessibility"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <View
+                        android:layout_width="200dp"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="105dp"
+                        android:background="#000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/MessagingSettingsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/name_conversation_border"
+                    android:backgroundTint="@color/whiteSmoke"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="82dp"
+                        android:layout_marginStart="104dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center|left"
+                        android:text="Messaging"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <View
+                        android:layout_width="200dp"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="105dp"
+                        android:background="#000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
