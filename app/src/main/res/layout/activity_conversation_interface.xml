@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/SwipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/whiteSmoke"
+        tools:context=".activties.ActivityConversationInterface">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="false" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="407dp"
+                android:layout_height="91dp"
+                android:layout_marginStart="2dp"
+                android:background="@color/whiteSmoke"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/ConversationName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autoSizeTextType="none"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="Name"
+                    android:textAlignment="gravity"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:background="@drawable/gradient_hydrogen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <ScrollView
+                android:id="@+id/ScrollViewParent"
+                android:layout_width="match_parent"
+                android:layout_height="384dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <LinearLayout
+                    android:id="@+id/ScrollViewContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="25dp" />
+            </ScrollView>
+
+            <FrameLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/whiteSmoke"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom|end"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp">
+
+                    <ImageButton
+                        android:id="@+id/MessageOptions"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="bottom|left"
+                        android:layout_marginRight="5dp"
+                        android:background="@mipmap/defualt_settings_icon_foreground"
+                        android:backgroundTint="@color/colorPrimary" />
+
+                    <ImageButton
+                        android:id="@+id/AddMediaBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:adjustViewBounds="false"
+                        android:background="@android:drawable/ic_input_add"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:cropToPadding="false"
+                        android:scaleType="fitStart" />
+
+                    <EditText
+                        android:id="@+id/MessageContainerInput"
+                        style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+                        android:layout_width="192dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right|center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="10dp"
+                        android:autoSizeTextType="uniform"
+                        android:background="@drawable/border"
+                        android:ems="10"
+                        android:hint="Enter Message Here"
+                        android:inputType="textMultiLine|text" />
+
+                    <ImageButton
+                        android:id="@+id/SendBtn"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/quantum_ic_arrow_back_grey600_24_foreground"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:rotation="180"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/ExternalMessagePreviewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/ExternalMessageImage"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start" />
+
+                <TextView
+                    android:id="@+id/ExternalMessagePreviewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|start"
+                    android:layout_marginLeft="75dp"
+                    android:text="TextView" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ProfileBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_margin="15dp"
+            android:clickable="true"
+            android:src="@mipmap/default_profile_picture"
+            android:visibility="visible"
+            app:backgroundTint="#00FFFFFF"
+            app:maxImageSize="50dp"
+            app:rippleColor="@color/colorPrimary" />
+
+        <ImageButton
+            android:id="@+id/BackBtn"
+            android:layout_width="64dp"
+            android:layout_height="52dp"
+            android:background="@android:color/transparent"
+            android:backgroundTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+
+    </FrameLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

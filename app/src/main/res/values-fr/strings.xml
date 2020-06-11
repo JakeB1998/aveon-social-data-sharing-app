@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MAD Competition</string>
+    <string name="LoginBtnText">connectez-vous</string>
+    <string name="CreateAccountText">Créer un compte</string>
+    <string name="NotYouText">Pas toi?</string>
+    <string name="SettingsText">Paramètres</string>
+    <string name="FriendListText">" Liste d'amis"</string>
+    <string name="BackBtn">" Arrière"</string>
+    <string name="LanguageText">Langue</string>
+    <string name="English">Anglais</string>
+    <string name="Added">Hinzugefügt</string>
+    <string name="Add">" Hinzufügen"</string>
+    <string name="Disabled">" désactivé"</string>
+    <string name="Enabled">Activée</string>
+    <string name="PrivacySettings">" Paramètres de confidentialité"</string>
+    <string name="SwipeFeatureText">" Glissez pour rafraîchir"</string>
+    <string name="AppSettings">" Paramètres de l'application"</string>
+    <string name="LogOutText">" Se déconnecter"</string>
+    <string name="AccountSettings">" Paramètres du compte"</string>
+    <string name="French">Français</string>
+    <string name="Friends">Copains</string>
+    <string name="German">Allemand</string>
+    <string name="MessagesTitle">messages</string>
+    <string name="OpenWith">" Ouvrir avec"</string>
+    <string name="Spanish">" Espagnol"</string>
+</resources>

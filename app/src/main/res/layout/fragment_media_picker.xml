@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|clip_horizontal|center"
+    android:background="@color/whiteSmoke"
+    android:foregroundGravity="bottom|center"
+    tools:context=".activties.Fragments.MediaPickerFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/MainContainer"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal"
+        android:paddingStart="25dp"
+        android:paddingTop="12.5dp">
+
+        <ImageButton
+            android:id="@+id/PictureBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circle_border"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_add_image_foreground" />
+
+        <ImageButton
+            android:id="@+id/FileBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circle_border"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_add_file_foreground" />
+
+        <ImageButton
+            android:id="@+id/LocationBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_weight="0"
+            android:background="@drawable/circle_border"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_add_location_icon" />
+
+        <ImageButton
+            android:id="@+id/CancelBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circle_border"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_cancel_foreground" />
+
+    </LinearLayout>
+
+</FrameLayout>

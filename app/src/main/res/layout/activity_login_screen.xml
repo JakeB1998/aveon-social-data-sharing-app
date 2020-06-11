@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_hydrogen"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activties.LoginScreenActivity"
+    tools:layout_editor_absoluteY="56dp"
+    tools:showIn="@layout/activity_login_screen">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="408dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="135dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/UsernameEditText"
+            android:layout_width="216dp"
+            android:layout_height="53dp"
+            android:layout_margin="100dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:backgroundTint="@color/whiteSmoke"
+            android:fontFamily="@font/open_sans"
+            android:hint="Username"
+            android:textColor="#811D1C1C" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username_text_input_layout"
+        android:layout_width="409dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="260dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/PasswordEditText"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="216dp"
+            android:layout_height="48dp"
+            android:layout_margin="100dp"
+            android:background="@android:drawable/editbox_background"
+            android:backgroundTint="@color/whiteSmoke"
+            android:ems="10"
+            android:fontFamily="@font/open_sans"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/NotYouBtn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="143dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark"
+        android:backgroundTint="@color/whiteSmoke"
+        android:fontFamily="@font/open_sans"
+        android:text="Not You?"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LoginBtn" />
+
+    <Button
+        android:id="@+id/LoginBtn"
+        android:layout_width="125dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="143dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark"
+        android:backgroundTint="@color/whiteSmoke"
+        android:fontFamily="@font/open_sans"
+        android:text="Login"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_text_input_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteSmoke"
+    tools:context=".activties.Fragments.settings.ProfileSettingsFragment">
+
+
+    <ImageButton
+        android:id="@+id/BackBtn"
+        android:layout_width="64dp"
+        android:layout_height="52dp"
+        android:background="@android:color/transparent"
+        android:backgroundTintMode="src_in"
+        android:scaleType="fitCenter"
+        android:src="@drawable/quantum_ic_arrow_back_grey600_24_foreground" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:fontFamily="@font/open_sans"
+                android:freezesText="false"
+                android:gravity="center"
+                android:text="Profile Visibility"
+                android:textAlignment="gravity"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/FriendsOnlyOption"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/whiteSmoke"
+                    android:gravity="center|left"
+                    android:paddingLeft="50dp"
+                    android:text="Friends Only"
+                    android:textAlignment="gravity"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/EnglishPicture"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginRight="25dp"
+                    android:tag="picture"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_check_circle_black_24dp" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/EveryOneOption"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="@drawable/border">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border"
+                    android:backgroundTint="@color/whiteSmoke"
+                    android:gravity="center|left"
+                    android:paddingLeft="50dp"
+                    android:text="Everyone"
+                    android:textAlignment="gravity"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginRight="25dp"
+                    android:tag="picture"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_check_circle_black_24dp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
