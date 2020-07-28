@@ -23,7 +23,7 @@ public class StringUtils {
     }
 
     /**
-     * 
+     *
      * @param data
      */
     public void setData(String data) {
