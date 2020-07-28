@@ -69,7 +69,7 @@ private final String LOG = this.getClass().getName();
 
 
     /**
-     * 
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
