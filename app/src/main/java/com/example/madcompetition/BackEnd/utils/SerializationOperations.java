@@ -104,7 +104,7 @@ public class SerializationOperations
     }
 
     /**
-     * 
+     *
      * @param inputStream
      * @return
      * @throws IOException

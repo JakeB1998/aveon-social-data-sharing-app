@@ -71,8 +71,8 @@ public class AppManager {
     }
 
     /**
-     *
-     * @return
+     * Determines if there is an account currently logged in.
+     * @return true if there is an account  that is logged otherwise false
      */
     public boolean isLoggedIn()
     {
@@ -87,9 +87,9 @@ public class AppManager {
     }
 
     /**
-     *
-     * @param account
-     * @return
+     * Query's if a specific account is logged into the application.
+     * @param account the account to see if logged in
+     * @return true if specified account is logged in
      */
     public boolean isLoggedIn(Account account)
     {
@@ -103,6 +103,10 @@ public class AppManager {
         }
     }
 
+    /**
+     *
+     * @return the account that is logged in, null if no account is logged in
+     */
     public Account getCurrentAccountLoggedIn() {
 
         if (currentAccountLoggedIn == null)
@@ -128,6 +132,11 @@ public class AppManager {
         return currentAccountLoggedIn;
     }
 
+    /**
+     *
+     * @param currentAccountLoggedIn The account that is to be set as the logged in account
+     * @param context The application context
+     */
     public void setCurrentAccountLoggedIn(Account currentAccountLoggedIn, Context context)
     {
 
@@ -154,23 +163,39 @@ public class AppManager {
 
     }
 
+    /**
+     * Checks application permission.
+     * @param permission
+     * @return true if specified permission is granted. Otherwise false.
+     */
     public boolean checkPermission(String permission)
     {
         boolean bool = false;
         //check permission
-
-
         return bool;
     }
 
+    /**
+     *
+     * @return true if application is connected to private application server
+     */
     public boolean isConnectedToServer() {
         return isConnectedToServer;
     }
 
+    /**
+     *
+     * @param connectedToServer
+     */
     public void setConnectedToServer(boolean connectedToServer) {
         isConnectedToServer = connectedToServer;
     }
 
+    /**
+     *
+     * @param context The application context
+     * @return true if device is connected to the internet
+     */
     public boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -179,29 +204,16 @@ public class AppManager {
     }
 
 
+    /**
+     *
+     * @return
+     */
     public Inet4Address getDeviceAddress() {
         return deviceAddress;
     }
 
     public void setDeviceAddress(Inet4Address deviceAddress) {
         this.deviceAddress = deviceAddress;
-    }
-
-
-    public Bitmap decodeToBitmap(Uri URI, Context context)
-    {
-        Bitmap bitmap = null;
-
-
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(),URI);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Bitmap", e.getMessage());
-        }
-
-        return bitmap;
-
     }
 
     public Context getAppContext() {
