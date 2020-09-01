@@ -27,6 +27,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Manager class that ovesees application operations
+ */
 public class AppManager {
     private static final AppManager ourInstance = new AppManager();
    private Context appContext;
@@ -56,15 +59,15 @@ public class AppManager {
     private Runnable myRunnable;
 
     /**
-     *
+     * Default constructor
      */
     private AppManager()
     {
     }
 
     /**
-     *
-     * @return
+     * Retrieves singleton instance of this manager class
+     * @return This istnace
      */
     public static AppManager getOurInstance() {
         return ourInstance;
@@ -114,8 +117,6 @@ public class AppManager {
             currentAccountLoggedIn = AccountDatabaseInterface.getInstance().getLoggedInAccountFromDatabase(getAppContext());
 
         }
-
-
         if (appContext != null)
         {
             if (currentAccountLoggedIn != null) {
@@ -133,7 +134,8 @@ public class AppManager {
     }
 
     /**
-     *
+     * Registers the current account that is logged in.
+     * This method has security checks to ensure that only activity classes with the propper permisssions can execute this method.
      * @param currentAccountLoggedIn The account that is to be set as the logged in account
      * @param context The application context
      */
@@ -192,7 +194,7 @@ public class AppManager {
     }
 
     /**
-     *
+     * Check to see if a network outside the local bounds is avaliable.
      * @param context The application context
      * @return true if device is connected to the internet
      */
@@ -224,6 +226,10 @@ public class AppManager {
         this.appContext = appContext;
     }
 
+    /**
+     * This allows multiple activites to register its callback listeners
+     * @param callback Callbacj interface
+     */
     public void registerUpdateListener(MyTimeUpdate callback)
     {
         if (updateCallbacks != null)
