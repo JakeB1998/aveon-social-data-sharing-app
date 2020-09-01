@@ -19,6 +19,13 @@ public class SerializationOperations
     }
 
 
+    /**
+     * Serializes an object to file by converting objects to a byte array to be then serialized directly to a file.
+     * This is accomplished using the ObjectOutputStream obhject
+     * @param file to house stored data
+     * @param obj to be converted to byte array
+     * @return
+     */
     public static File serilizeObjectToFile(File file, Object obj) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
@@ -39,7 +46,11 @@ public class SerializationOperations
     }
 
 
-
+    /**
+     * Serialzies objects to byte arryas using ObjectOutputStream class
+     * @param data to be converted to byte array
+     * @return an array of bytes representing the object param
+     */
     public static byte[] serializeObjectToBtyeArray(Object data)
     {
         ByteArrayOutputStream out = null;
@@ -55,17 +66,24 @@ public class SerializationOperations
         }
 
         return  out.toByteArray();
-
-
     }
 
 
+    /**
+     * Deserilizes an array of bytes to a string object
+     * @param data payload
+     * @return string representation of data param
+     */
     public static String deserializeToString(byte[] data)
     {
-
-
         return new String(data);
     }
+
+    /**
+     *
+     * @param data
+     * @return
+     */
     public static Object deserializeToObject(byte[] data)
     {
         Object x = null;
@@ -85,6 +103,12 @@ public class SerializationOperations
         return x;
     }
 
+    /**
+     *
+     * @param inputStream
+     * @return
+     * @throws IOException
+     */
     public static byte[] readBytes(InputStream inputStream) throws IOException {
         // this dynamically extends to take the bytes you read
         ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();

@@ -31,6 +31,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+/**
+ *
+ */
 public class ActivityCreateAnAccountFinal extends AppCompatActivity
 {
 
@@ -40,6 +43,10 @@ public class ActivityCreateAnAccountFinal extends AppCompatActivity
 
     private Button continueBtn;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -62,11 +69,12 @@ public class ActivityCreateAnAccountFinal extends AppCompatActivity
                 finalizeAccount(passedAccount);
             }
         });
-
-
     }
 
-
+    /**
+     *
+     * @param account
+     */
     public void finalizeAccount(Account account)
     {
         Account finalAccount = account;
@@ -114,11 +122,12 @@ public class ActivityCreateAnAccountFinal extends AppCompatActivity
 
         }
 
-
+        /**
+         * Called on refresh
+         */
         @Override
         public void onRefresh ()
         {
-
             Log.i(this.getClass().getName(), "Swipe called back overridden here");
         }
     }

@@ -32,6 +32,10 @@ public class App extends Application implements Application.ActivityLifecycleCal
     public final static SavedSettings DEFAULT_SETTINGS = new SavedSettings();
 
     private AppManager appManager;
+
+    /**
+     *
+     */
     public void onCreate() {
         super.onCreate();
         this.registerActivityLifecycleCallbacks(this);
@@ -64,7 +68,9 @@ public class App extends Application implements Application.ActivityLifecycleCal
     }
 
 
-
+    /**
+     * Initializes application instance
+     */
     public void init()
     {
         AppManager.getInstance().setAppContext(this.getApplicationContext());
@@ -190,6 +196,10 @@ public class App extends Application implements Application.ActivityLifecycleCal
 
     }
 
+    /**
+     * Called when an activity is destroyed
+     * @param activity The activity that was destroyed
+     */
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
 
@@ -201,10 +211,11 @@ public class App extends Application implements Application.ActivityLifecycleCal
         }
 
          */
-
-
     }
 
+    /**
+     *
+     */
     public class MyDragListener implements View.OnDragListener {
 
         Drawable enterShape = getResources().getDrawable( R.drawable.shape_droptarget, getTheme());
