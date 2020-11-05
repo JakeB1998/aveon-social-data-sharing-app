@@ -13,7 +13,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.madcompetition.BackEnd.server.ftp.FileData;
+import com.example.madcompetition.backend.server.ftp.FileData;
 
 import Mad.Competition.Server.ClientHandlerS;
 import Mad.Competition.Server.ConnectedDevice;

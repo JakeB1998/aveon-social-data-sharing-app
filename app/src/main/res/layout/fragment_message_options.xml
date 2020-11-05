@@ -7,7 +7,7 @@
     android:background="@color/whiteSmoke"
     android:orientation="horizontal"
     android:paddingRight="15dp"
-    tools:context=".activties.Fragments.MessageOptionsFragment">
+    tools:context=".activties.fragments.MessageOptionsFragment">
 
     <ImageButton
         android:id="@+id/MarkImportantBtn"

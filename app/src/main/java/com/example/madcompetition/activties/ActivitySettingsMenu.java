@@ -2,8 +2,6 @@ package com.example.madcompetition.activties;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.madcompetition.R;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
-import com.example.madcompetition.activties.Fragments.settings.AssessibilitySettingsFragment;
-import com.example.madcompetition.activties.Fragments.settings.ProfileSettingsFragment;
+import com.example.madcompetition.activties.fragments.settings.AssessibilitySettingsFragment;
+import com.example.madcompetition.activties.fragments.settings.ProfileSettingsFragment;
 
 public class ActivitySettingsMenu extends AppCompatActivity {
 

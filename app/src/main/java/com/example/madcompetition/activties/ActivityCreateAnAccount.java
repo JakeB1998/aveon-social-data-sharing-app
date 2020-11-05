@@ -13,19 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.madcompetition.BackEnd.account.AccountSubType;
-import com.example.madcompetition.BackEnd.account.AccountType;
-
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.account.PersonalInformation;
-import com.example.madcompetition.BackEnd.security.KeyContract;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.account.PersonalInformation;
+import com.example.madcompetition.backend.security.KeyContract;
 import com.example.madcompetition.R;
-import com.example.madcompetition.activties.Fragments.FragmentTags;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
+import com.example.madcompetition.activties.fragments.FragmentTags;
+import com.example.madcompetition.activties.fragments.SwipeTorefreshFragment;
 
-public class ActivityCreateAnAccount extends AppCompatActivity
-{
+public class ActivityCreateAnAccount extends AppCompatActivity {
 
     public Button createBtn;
 
@@ -46,36 +42,32 @@ public class ActivityCreateAnAccount extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_an_account);
 
-        createBtn = (Button)findViewById(R.id.CreateBtn);
+        createBtn = findViewById(R.id.CreateBtn);
 
-        mFirstName = (EditText) findViewById(R.id.FirstNameEditText);
-        lastName = (EditText)findViewById(R.id.LastNameEditText);
-        phoneNumberInput = (EditText) findViewById(R.id.PhoneEditText);
-        emailInput = (EditText) findViewById(R.id.EmailEditText);
+        mFirstName = findViewById(R.id.FirstNameEditText);
+        lastName = findViewById(R.id.LastNameEditText);
+        phoneNumberInput = findViewById(R.id.PhoneEditText);
+        emailInput = findViewById(R.id.EmailEditText);
         cancelBtn = findViewById(R.id.CancelBtn);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // load main activity
-                Toast.makeText(ActivityCreateAnAccount.this,"Cancelling", Toast.LENGTH_LONG);
+                Toast.makeText(ActivityCreateAnAccount.this, "Cancelling", Toast.LENGTH_LONG);
             }
         });
 
 
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
-                if (checkData())
-                {
-                    Toast.makeText(ActivityCreateAnAccount.this,"Loading", Toast.LENGTH_LONG).show();
+                if (checkData()) {
+                    Toast.makeText(ActivityCreateAnAccount.this, "Loading", Toast.LENGTH_LONG).show();
                     loadNextActivity();
-                }
-                else
-                {
-                    Toast.makeText(ActivityCreateAnAccount.this,"Error", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ActivityCreateAnAccount.this, "Error", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -84,8 +76,7 @@ public class ActivityCreateAnAccount extends AppCompatActivity
     }
 
 
-    public boolean checkData()
-    {
+    public boolean checkData() {
         final int NUMOFCHARATERS = 3;
         boolean notValid = false;
 
@@ -94,101 +85,82 @@ public class ActivityCreateAnAccount extends AppCompatActivity
         String phoneNumber = AppManager.NULLABLE_STRING;
         String email = AppManager.NULLABLE_STRING;
 
-            if (emailInput.getText().length() > 0) {
+        if (emailInput.getText().length() > 0) {
 
-                if (checkIfValidEmail(emailInput.getText().toString())) {
-                    email = emailInput.getText().toString();
-                } else {
-                    notValid = true;
-                }
-            }
-            else
-            {
+            if (checkIfValidEmail(emailInput.getText().toString())) {
+                email = emailInput.getText().toString();
+            } else {
                 notValid = true;
             }
+        } else {
+            notValid = true;
+        }
 
 
-            if (phoneNumberInput.getText().length() > 0) {
+        if (phoneNumberInput.getText().length() > 0) {
 
 
-                if (checkIfPhoneValid(phoneNumberInput.getText().toString()))
-                {
-                    phoneNumber = phoneNumberInput.getText().toString();
+            if (checkIfPhoneValid(phoneNumberInput.getText().toString())) {
+                phoneNumber = phoneNumberInput.getText().toString();
 
 
-                } else {
-                    notValid = true;
-                    phoneNumberInput.setError("Not valid number");
-                }
-            }
-            else
-            {
+            } else {
                 notValid = true;
-                phoneNumberInput.setError("Can not leave blank");
+                phoneNumberInput.setError("Not valid number");
             }
+        } else {
+            notValid = true;
+            phoneNumberInput.setError("Can not leave blank");
+        }
 
 
-            if (mFirstName.getText().length() > 0)
-            {
-                if (firstNameS.length() >= NUMOFCHARATERS) {
-                    firstNameS = mFirstName.getText().toString();
-                    char[] x = firstNameS.toCharArray();
-                    for (char z : x) {
-                        if (Character.isLetter(z) == false) {
-                            notValid = true;
-                            break;
-                        }
+        if (mFirstName.getText().length() > 0) {
+            if (firstNameS.length() >= NUMOFCHARATERS) {
+                firstNameS = mFirstName.getText().toString();
+                char[] x = firstNameS.toCharArray();
+                for (char z : x) {
+                    if (Character.isLetter(z) == false) {
+                        notValid = true;
+                        break;
                     }
                 }
-                else
-                {
-                    mFirstName.setError("Must have atleast " + NUMOFCHARATERS + " characters");
-                }
+            } else {
+                mFirstName.setError("Must have atleast " + NUMOFCHARATERS + " characters");
             }
-            else
-            {
-                notValid = true;
-            }
+        } else {
+            notValid = true;
+        }
 
 
-
-            if (lastName.getText().length() > 0) {
-                lastNameS = mFirstName.getText().toString();
-                if (lastNameS.length() >= NUMOFCHARATERS) {
-                    char[] x = firstNameS.toCharArray();
-                    for (char z : x) {
-                        if (Character.isLetter(z) == false) {
-                            notValid = true;
-                            break;
-                        }
+        if (lastName.getText().length() > 0) {
+            lastNameS = mFirstName.getText().toString();
+            if (lastNameS.length() >= NUMOFCHARATERS) {
+                char[] x = firstNameS.toCharArray();
+                for (char z : x) {
+                    if (Character.isLetter(z) == false) {
+                        notValid = true;
+                        break;
                     }
                 }
-                else
-                {
-                    notValid = true;
-                    lastName.setError("Must have atleast " + NUMOFCHARATERS + " characters");
-                }
+            } else {
+                notValid = true;
+                lastName.setError("Must have atleast " + NUMOFCHARATERS + " characters");
             }
+        }
 
 
-
-        if (notValid)
-        {
+        if (notValid) {
             newAccount = null;
             return false;
-        }
-        else
-        {
-             //newAccount = new Account(firstNameS + " " +  lastNameS, false,
-                  //  AccountType.User, AccountSubType.Personal,phoneNumber,email);
+        } else {
+            //newAccount = new Account(firstNameS + " " +  lastNameS, false,
+            //  AccountType.User, AccountSubType.Personal,phoneNumber,email);
             return true;
         }
     }
 
 
-
-    public boolean checkIfValidEmail(String email)
-    {
+    public boolean checkIfValidEmail(String email) {
         String emailS = emailInput.getText().toString();
         emailS = emailS.trim();
 
@@ -196,8 +168,7 @@ public class ActivityCreateAnAccount extends AppCompatActivity
         String EMAIL_REGEX = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         valid1 = email.matches(EMAIL_REGEX);
 
-        if (emailS.length() > 0)
-        {
+        if (emailS.length() > 0) {
             if (emailS.contains("@") && emailS.contains(".com")) {
                 int x = emailS.length() - 4;
                 String temp = emailS.substring(x);
@@ -223,53 +194,40 @@ public class ActivityCreateAnAccount extends AppCompatActivity
 
                         if (valid) {
                             return true;
-                        }
-                        else
+                        } else
                             emailInput.setError("email provider not supported. Suppoerted providers include : gmail, outlook, yahoo");
-                    }
-                    else
+                    } else
                         emailInput.setError("the @ symbol must be before .com");
 
-                }
-                else
+                } else
                     emailInput.setError("Email does not end with: .com");
 
-            } else
-           {
-               if (emailS.contains("@") == false && emailS.contains(".com") == true)
-               {
-                   emailInput.setError("Email does not contain @ symbol");
-               }
-               else if (emailS.contains(".com") == false && emailS.contains("@") == true)
-               {
-                   emailInput.setError("Email does not contain: .com");
-               }
-               else
-               {
-                   emailInput.setError("Email does not contain: @ , .com");
-               }
-           }
+            } else {
+                if (emailS.contains("@") == false && emailS.contains(".com") == true) {
+                    emailInput.setError("Email does not contain @ symbol");
+                } else if (emailS.contains(".com") == false && emailS.contains("@") == true) {
+                    emailInput.setError("Email does not contain: .com");
+                } else {
+                    emailInput.setError("Email does not contain: @ , .com");
+                }
+            }
 
         }
 
 
-        if (emailInput.getError() == null)
-        {
+        if (emailInput.getError() == null) {
             emailInput.setError("Email is not properly formated");
         }
         return false;
     }
-    public boolean checkIfPhoneValid(String phone)
-    {
+
+    public boolean checkIfPhoneValid(String phone) {
         final int numberOf = 10;
 
         phone = phone.trim();
-        if (phone.length() == numberOf)
-        {
+        if (phone.length() == numberOf) {
             return true;
-        }
-        else
-        {
+        } else {
             phoneNumberInput.setError("Phone number is does not contain 8 numbers");
             return false;
 
@@ -278,14 +236,13 @@ public class ActivityCreateAnAccount extends AppCompatActivity
 
     }
 
-    public void loadNextActivity()
-    {
+    public void loadNextActivity() {
 
         String fullName = mFirstName.getText().toString().trim() + " " + lastName.getText().toString().trim();
 
-        newAccount = new Account(fullName,this);
+        //newAccount = new Account();
 
-        personalInformation = new PersonalInformation(fullName,phoneNumberInput.getText().toString().trim(),emailInput.getText().toString().trim(),newAccount.getAccountID());
+        personalInformation = new PersonalInformation(fullName, phoneNumberInput.getText().toString().trim(), emailInput.getText().toString().trim(), newAccount.getAccountID());
         newAccount.setPersonalInformation(personalInformation);
         Intent intent = new Intent(this, ActivityCreateAnAccountSetupPart1.class);
         if (newAccount != null) {
@@ -299,8 +256,9 @@ public class ActivityCreateAnAccount extends AppCompatActivity
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-       Log.i("Application", "Activity state restored");
+        Log.i("Application", "Activity state restored");
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
@@ -331,12 +289,10 @@ public class ActivityCreateAnAccount extends AppCompatActivity
     /**
      * Inner class
      */
-    private class SwipeRefreshFeature implements SwipeRefreshLayout.OnRefreshListener
-    {
+    private class SwipeRefreshFeature implements SwipeRefreshLayout.OnRefreshListener {
         private SwipeTorefreshFragment mSwipeRefresh;
 
-        public void addSwipeFeature ()
-        {
+        public void addSwipeFeature() {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -349,9 +305,7 @@ public class ActivityCreateAnAccount extends AppCompatActivity
                 fragment.registerOnRefreshListener(this);
 
                 mSwipeRefresh = fragment;
-            }
-            else
-            {
+            } else {
                 Log.e(this.getClass().getName(), "Attempted to open swipe to refresh fragment when one is already on");
             }
 
@@ -359,8 +313,7 @@ public class ActivityCreateAnAccount extends AppCompatActivity
 
 
         @Override
-        public void onRefresh ()
-        {
+        public void onRefresh() {
 
             Log.i(this.getClass().getName(), "Swipe called back overridden here");
         }

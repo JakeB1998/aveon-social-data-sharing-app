@@ -8,7 +8,7 @@
  *
  * Out Of Class Personal Program
  */
-package com.example.madcompetition.BackEnd.utils;
+package com.example.madcompetition.backend.utils;
 
 /**
  * <insert class description here>

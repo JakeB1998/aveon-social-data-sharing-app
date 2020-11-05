@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.madcompetition.BackEnd.account.profile.Profile;
+import com.example.madcompetition.backend.account.profile.Profile;
 import com.example.madcompetition.R;
 
 public class ActivityProfileViewer extends AppCompatActivity {

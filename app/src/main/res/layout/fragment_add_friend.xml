@@ -16,7 +16,7 @@
     android:background="@drawable/gradient_hydrogen"
     android:backgroundTint="#1AFFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".activties.Fragments.AddFriendFragment">
+    tools:context=".activties.fragments.AddFriendFragment">
 
 
         <ImageButton

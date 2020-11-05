@@ -12,9 +12,9 @@ package Mad.Competition.Server;
 
 import java.net.Inet4Address;
 
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.MessageType;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.MessageType;
 
 /**
  * <insert class description here>

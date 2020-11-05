@@ -2,13 +2,13 @@ package Mad.Competition.Server;
 
 import java.util.ArrayList;
 
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.ClientServerObjectRequest;
-import com.example.madcompetition.BackEnd.server.ClientServerObjectResults;
-import com.example.madcompetition.BackEnd.server.MessageSubType;
-import com.example.madcompetition.BackEnd.server.MessageType;
-import com.example.madcompetition.BackEnd.server.ObjectRequest;
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.ClientServerObjectRequest;
+import com.example.madcompetition.backend.server.ClientServerObjectResults;
+import com.example.madcompetition.backend.server.MessageSubType;
+import com.example.madcompetition.backend.server.MessageType;
+import com.example.madcompetition.backend.server.ObjectRequest;
+import com.example.madcompetition.backend.utils.SerializationOperations;
 
 public class ClientServerMessageHandler
 {

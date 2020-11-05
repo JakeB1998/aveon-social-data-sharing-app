@@ -8,7 +8,7 @@
  *
  * Out Of Class Personal Program
  */
-package com.example.madcompetition.BackEnd.account;
+package com.example.madcompetition.backend.account;
 
 import java.io.Serializable;
 import java.net.Inet4Address;
@@ -16,9 +16,9 @@ import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.Random;
 
-import com.example.madcompetition.BackEnd.security.Credentials;
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
-import com.example.madcompetition.BackEnd.utils.StringUtils;
+import com.example.madcompetition.backend.security.Credentials;
+import com.example.madcompetition.backend.utils.SerializationOperations;
+import com.example.madcompetition.backend.utils.StringUtils;
 
 /**
  * <insert class description here>

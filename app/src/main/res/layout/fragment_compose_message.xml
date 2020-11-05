@@ -7,7 +7,7 @@
     android:background="@drawable/gradient_hydrogen"
     android:backgroundTint="#1AFFFFFF"
     android:backgroundTintMode="src_over"
-    tools:context=".activties.Fragments.ComposeMessageFragment">
+    tools:context=".activties.fragments.ComposeMessageFragment">
 
     <ImageButton
         android:id="@+id/BackBtn"

@@ -1,58 +1,53 @@
 package com.example.madcompetition.activties;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.example.madcompetition.BackEnd.Interfaces.DataTransferCallback;
-import com.example.madcompetition.BackEnd.Interfaces.ProgressDataTransferCallback;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.messaging.system.Conversation;
-import com.example.madcompetition.BackEnd.messaging.system.FileMessage;
-import com.example.madcompetition.BackEnd.security.KeyContract;
-import com.example.madcompetition.BackEnd.server.ftp.FileData;
-import com.example.madcompetition.BackEnd.server.ftp.FtpServerConnectInterface;
-import com.example.madcompetition.BackEnd.utils.Data;
-import com.example.madcompetition.BackEnd.utils.FileExtensionUtils;
-import com.example.madcompetition.BackEnd.utils.FileUtils;
-import com.example.madcompetition.BackEnd.utils.KeyboardUtils;
-import com.example.madcompetition.BackEnd.messaging.system.LocationMessage;
-import com.example.madcompetition.BackEnd.messaging.system.MessageContraints;
-import com.example.madcompetition.BackEnd.messaging.system.MessageHandler;
-import com.example.madcompetition.BackEnd.messaging.system.PictureMessage;
-import com.example.madcompetition.BackEnd.messaging.system.Message;
-import com.example.madcompetition.BackEnd.utils.StringUtils;
-import com.example.madcompetition.activties.Fragments.FragmentTags;
-import com.example.madcompetition.activties.Fragments.ImageViewerFragment;
-import com.example.madcompetition.activties.Fragments.MediaPickerFragment;
-import com.example.madcompetition.activties.Fragments.MessageOptionsFragment;
-import com.example.madcompetition.BackEnd.Interfaces.FragmentDestroyedCallback;
-import com.example.madcompetition.BackEnd.messaging.system.MessageAction;
-import com.example.madcompetition.BackEnd.messaging.system.MessageFrom;
-import com.example.madcompetition.BackEnd.Interfaces.MyTimeUpdate;
+import com.example.madcompetition.backend.Interfaces.DataTransferCallback;
+import com.example.madcompetition.backend.Interfaces.ProgressDataTransferCallback;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.messaging.system.Conversation;
+import com.example.madcompetition.backend.messaging.system.FileMessage;
+import com.example.madcompetition.backend.security.KeyContract;
+import com.example.madcompetition.backend.server.ftp.FileData;
+import com.example.madcompetition.backend.server.ftp.FtpServerConnectInterface;
+import com.example.madcompetition.backend.utils.Data;
+import com.example.madcompetition.backend.utils.FileExtensionUtils;
+import com.example.madcompetition.backend.utils.FileUtils;
+import com.example.madcompetition.backend.utils.KeyboardUtils;
+import com.example.madcompetition.backend.messaging.system.LocationMessage;
+import com.example.madcompetition.backend.messaging.system.MessageContraints;
+import com.example.madcompetition.backend.messaging.system.MessageHandler;
+import com.example.madcompetition.backend.messaging.system.PictureMessage;
+import com.example.madcompetition.backend.messaging.system.Message;
+import com.example.madcompetition.activties.fragments.FragmentTags;
+import com.example.madcompetition.activties.fragments.ImageViewerFragment;
+import com.example.madcompetition.activties.fragments.MediaPickerFragment;
+import com.example.madcompetition.activties.fragments.MessageOptionsFragment;
+import com.example.madcompetition.backend.Interfaces.FragmentDestroyedCallback;
+import com.example.madcompetition.backend.messaging.system.MessageAction;
+import com.example.madcompetition.backend.messaging.system.MessageFrom;
+import com.example.madcompetition.backend.Interfaces.MyTimeUpdate;
 import com.example.madcompetition.R;
-import com.example.madcompetition.BackEnd.messaging.system.TextMessage;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
+import com.example.madcompetition.backend.messaging.system.TextMessage;
+import com.example.madcompetition.activties.fragments.SwipeTorefreshFragment;
+import com.example.madcompetition.multithreaded.AppExecutors;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -60,15 +55,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -80,8 +72,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -89,6 +79,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Activity that houses conversations.
+ */
 public class ActivityConversationInterface extends AppCompatActivity implements FragmentDestroyedCallback, MyTimeUpdate, DataTransferCallback {
 
     private final int CHARACTER_MAX = 255;
@@ -100,7 +93,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     private Message[] messages;
     private boolean canSendFile;
 
-    private HashMap<View,Message> uiMessagePairs;
+    private HashMap<View, Message> uiMessagePairs;
 
     private ProgressBar progressBar;
     private ImageButton sendMessageBtn;
@@ -116,7 +109,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     private float touchY;
 
 
-    public final int HOST_SENDER_BACKROUND_COLOR = Color.rgb(76,230,82);
+    public final int HOST_SENDER_BACKROUND_COLOR = Color.rgb(76, 230, 82);
     public final int HOST_RECIEVER_BACKROUND_COLOR = Color.GRAY;
 
     private FrameLayout myView;
@@ -139,7 +132,6 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     private AccountInformation[] recipients;
 
     /**
-     *
      * @param savedInstanceState
      */
     @Override
@@ -154,16 +146,15 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
         MessageHandler.registerForUpdates(this);
 
-       uiMessagePairs = new HashMap<>();
+        uiMessagePairs = new HashMap<>();
 
         appManager = AppManager.getInstance();
         currentAccount = appManager.getCurrentAccountLoggedIn();
 
-        if (currentAccount == null)
-        {
+        if (currentAccount == null) {
             //currentAccount = new Account();
         }
-        Log.i("ActivityExtra", Integer.toString(currentAccount.getAccountID()));
+        //Log.i("ActivityExtra", Integer.toString(currentAccount.getAccountID()));
 
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
@@ -184,25 +175,31 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
         swipeRefreshLayout.setEnabled(false);
 
+        /*
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadMessages(true);
+                //loadMessages(true);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
 
-        if (appManager.getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings() != null) {
-            if (appManager.getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings().isSwipeFeatureEnabled() == false) {
-                swipeRefreshLayout.setEnabled(false);
+         */
+
+        swipeRefreshLayout.setEnabled(true);
+        if (appManager.getCurrentAccountLoggedIn() != null) {
+            if (appManager.getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings() != null) {
+                if (appManager.getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings().isSwipeFeatureEnabled() == false) {
+                    swipeRefreshLayout.setEnabled(false);
+                }
             }
         }
 
         progressBar = findViewById(R.id.progressBar);
-       progressBar.setVisibility(ProgressBar.INVISIBLE);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         externalMessagePreviewImage = findViewById(R.id.ExternalMessageImage);
-        externalMessagePreviewText  = findViewById(R.id.ExternalMessagePreviewTitle);
+        externalMessagePreviewText = findViewById(R.id.ExternalMessagePreviewTitle);
         externalMessagePreviewImage.setOnClickListener(new ExternalImageClickHandle());
 
         mBackBtn.setOnClickListener(new View.OnClickListener() {
@@ -215,8 +212,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 Fragment fragment = null;
-                if ((fragment = getSupportFragmentManager().findFragmentByTag("MESSAGEOPTIONS")) != null)
-                {
+                if ((fragment = getSupportFragmentManager().findFragmentByTag("MESSAGEOPTIONS")) != null) {
                     getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 }
                 return false;
@@ -224,8 +220,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
         });
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
-        {
+        if (extras != null) {
             Log.i("MyDebug", "started");
             if (extras.containsKey("Conversation")) {
                 currentConversation = (Conversation) extras.getSerializable("Conversation"); // a serialized copy passed from last activity
@@ -244,15 +239,16 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
             }
         }
+        else{
+            //load default conversation
+        }
 
 
-        if (currentConversation.getAccounts() != null)
-        {
+        if (currentConversation.getAccounts() != null) {
             String names = "";
             AccountInformation[] accounts = currentConversation.getAccounts();
 
-            for (int i = 0; i < accounts.length; i++)
-            {
+            for (int i = 0; i < accounts.length; i++) {
                 if (accounts[i].equals(AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation()) == false) {
 
                     names += accounts[i].getTextRepresentation();
@@ -264,32 +260,24 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (preppedMessage != null)
-                {
-                    if (canSendFile)
-                    {
+                if (preppedMessage != null) {
+                    if (canSendFile) {
                         Log.i(this.getClass().getName(), "Sending file");
-                        Toast.makeText(ActivityConversationInterface.this,"Sending", Toast.LENGTH_LONG);
+                        Toast.makeText(ActivityConversationInterface.this, "Sending", Toast.LENGTH_LONG);
                         if (sendMessage(preppedMessage)) {
                             preppedMessage = null;
                             clearExternalGui();
                             canSendFile = false;
                             Log.i(this.getClass().getName(), "file sent");
 
-                        }
-                        else
-                        {
+                        } else {
                             Log.i(this.getClass().getName(), "file not sent");
                         }
-                    }
-                    else
-                    {
+                    } else {
                         Log.i(this.getClass().getName(), "must wait to send file");
                     }
-                }
-                else
-                {
-                   Log.i(this.getClass().getName(), "Prepped message is null");
+                } else {
+                    Log.i(this.getClass().getName(), "Prepped message is null");
                     sendMessageFromTextBox(); // checks to see if text is in textbox, if so then sends
                 }
                 loadMessages(true);
@@ -300,7 +288,6 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
 
     /**
-     *
      * @param hasFocus
      */
     @Override
@@ -329,13 +316,11 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                     fragmentTransaction.commit();
 //                    fragment.slide();
                     Log.i(ActivityConversationInterface.class.getName(), "doesnt exists");
-                }
-                else
-                {
+                } else {
                     fragment.slide();
                     Log.i(ActivityConversationInterface.class.getName(), "Fragment exists");
-                   // fragmentTransaction.replace(R.id.main, fragment, TAG);
-                   // fragmentTransaction.commit();
+                    // fragmentTransaction.replace(R.id.main, fragment, TAG);
+                    // fragmentTransaction.commit();
 
                 }
 
@@ -346,15 +331,15 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * Loades messages from the users saved conversation array and orders gui to be created for each message accordingly.
      * Also handles dynamically loading image bitampas without the thread blocking
+     *
      * @param interfaceCall
      */
-    public void loadMessages(Boolean interfaceCall)
-    {
+    public void loadMessages(Boolean interfaceCall) {
 
         currentAccount = AppManager.getInstance().getCurrentAccountLoggedIn();
 
-        Log.i(LOG,"Message Number size  : " + currentConversation.getMessages().size());
-        Log.i(LOG,"Loading messages");
+        Log.i(LOG, "Message Number size  : " + currentConversation.getMessages().size());
+        Log.i(LOG, "Loading messages");
         scrollView.removeAllViews();
         MessageContraints cc = new MessageContraints(MessageAction.SelfDestruct, MessageFrom.TimeSent, ChronoUnit.MINUTES, 3);
         for (int i = 0; i < currentConversation.getMessages().size(); i++) {
@@ -368,25 +353,17 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                 createTextMessageGui(text);
                 //currentConversation.getMessages().get(i).setTimeSent(LocalTime.now().minusMinutes(8));
                 cc.hasConstaintBeenMet(currentConversation.getMessages().get(i));
-            }
-            else if (currentConversation.getMessages().get(i) instanceof LocationMessage)
-            {
+            } else if (currentConversation.getMessages().get(i) instanceof LocationMessage) {
                 createLocationMessage((LocationMessage) currentConversation.getMessages().get(i));
 
-            }
-            else if(currentConversation.getMessages().get(i) instanceof PictureMessage)
-            {
+            } else if (currentConversation.getMessages().get(i) instanceof PictureMessage) {
                 Log.i(this.getClass().getName(), "created picture message gui");
-                this.createPictureMessageGui((PictureMessage)currentConversation.getMessages().get(i));
-            }
-            else if (currentConversation.getMessages().get(i) instanceof FileMessage)
-            {
+                this.createPictureMessageGui((PictureMessage) currentConversation.getMessages().get(i));
+            } else if (currentConversation.getMessages().get(i) instanceof FileMessage) {
                 Log.i(this.getClass().getName(), "created picture message gui");
                 this.createFileMessage((FileMessage) currentConversation.getMessages().get(i));
 
-            }
-            else
-            {
+            } else {
                 Log.i(this.getClass().getName(), "Message not created GUI");
             }
 
@@ -394,34 +371,28 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     }
 
     /**
-     *Create the gui related to a textual message dynamically
+     * Create the gui related to a textual message dynamically
+     *
      * @param textNew
      */
-    private void createTextMessageGui(TextMessage textNew)
-    {
+    private void createTextMessageGui(TextMessage textNew) {
         final TextMessage text = textNew;
         boolean valid = false;
-        if (text != null)
-        {
+        if (text != null) {
             valid = true;
 
         }
 
-        LayoutInflater inflater = (LayoutInflater)   this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final FrameLayout view = (FrameLayout)inflater.inflate(R.layout.layout_text_message,myView, false);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final FrameLayout view = (FrameLayout) inflater.inflate(R.layout.layout_text_message, myView, false);
         final TextView myText = view.findViewById(R.id.textMessage);
-            repositionMessageGui(textNew,myText,view);
+        repositionMessageGui(textNew, myText, view);
 
-        if (text.isMessageSelfDestructed() == false)
-        {
+        if (text.isMessageSelfDestructed() == false) {
             myText.setText(text.getMessage());
-        }
-        else if (text.isMessageSelfDestructed())
-        {
+        } else if (text.isMessageSelfDestructed()) {
             myText.setText("THIS MESSAGE HAS SELF DESTRUCTED");
-        }
-        else
-        {
+        } else {
             myText.setText("BLANK");
 
         }
@@ -433,10 +404,10 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
     /**
      * Creates the gui related to a picture message dynamically
+     *
      * @param pictureMessage
      */
-    private void createPictureMessageGui(final PictureMessage pictureMessage)
-    {
+    private void createPictureMessageGui(final PictureMessage pictureMessage) {
         final View view;
         boolean valid = false;
         if (pictureMessage != null) {
@@ -458,19 +429,15 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                             FtpServerConnectInterface.getInstance().startDownloadInteraction(pictureMessage);
                             Log.i(this.getClass().getName(), "Image Clicked");
 
-                        }
-                        else
-                        {
+                        } else {
 
-                                pictureMessage.setLoaded(true);
-                                loadFileelsewhere(pictureMessage.getMessageFileData().getFile(), FileUtils.getMimeType(pictureMessage.getMessageFileData().getFile().toPath().toString()));
-
-                        }
-                    }
-                    else
-                    {
-
+                            pictureMessage.setLoaded(true);
                             loadFileelsewhere(pictureMessage.getMessageFileData().getFile(), FileUtils.getMimeType(pictureMessage.getMessageFileData().getFile().toPath().toString()));
+
+                        }
+                    } else {
+
+                        loadFileelsewhere(pictureMessage.getMessageFileData().getFile(), FileUtils.getMimeType(pictureMessage.getMessageFileData().getFile().toPath().toString()));
 
                     }
                 }
@@ -478,38 +445,30 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             //backroundMessage.setBackground(getDrawable(R.mipmap.default_messagesbackround_icon_foreground));
 
             Log.i(this.getClass().getName(), FileUtils.getMimeType(pictureMessage.getMessageFileData().getFile().toPath().toString()));
-            if (pictureMessage.isMessageSelfDestruct())
-            {
+            if (pictureMessage.isMessageSelfDestruct()) {
                 Log.i(this.getClass().getName(), "Message is self =destructed");
-               // contentImage.setImageBitmap(null); // replace with self destruct image
-            }
-            else
-            {
+                // contentImage.setImageBitmap(null); // replace with self destruct image
+            } else {
 
-                if (pictureMessage.getMessageFileData().getFileLength() == pictureMessage.getMessageFileData().getFile().length())
-                {
-                   // final InputStream imageStream =ActivityConversationInterface.this.getContentResolver().openInputStream();
-                    if (pictureMessage.getPictureMessage()== null) {
+                if (pictureMessage.getMessageFileData().getFileLength() == pictureMessage.getMessageFileData().getFile().length()) {
+                    // final InputStream imageStream =ActivityConversationInterface.this.getContentResolver().openInputStream();
+                    if (pictureMessage.getPictureMessage() == null) {
                         Log.i(this.getClass().getName(), "Loading image from file");
                         Log.i(this.getClass().getName(), "File path : " + pictureMessage.getMessageFileData().getFilePath());
-                    }
-                    else
-                    {
+                    } else {
                         Log.i(this.getClass().getName(), "File path : " + pictureMessage.getMessageFileData().getFile().getPath());
                         Log.i(this.getClass().getName(), "Bitmap size : " + pictureMessage.getPictureMessage().getByteCount());
                     }
-                }
-                else
-                {
-                   // Log.i(this.getClass().getName(),"Size 1 : " +  pictureMessage.getMessageFileData().getFilePath().length() + "\n Size 2 : " + pictureMessage.getMessageFileData().getFile().length());
+                } else {
+                    // Log.i(this.getClass().getName(),"Size 1 : " +  pictureMessage.getMessageFileData().getFilePath().length() + "\n Size 2 : " + pictureMessage.getMessageFileData().getFile().length());
                     Log.i(this.getClass().getName(), "File created before download" + "Recorded Length : " + pictureMessage.getMessageFileData().getFileLength()
                             + "Actual file length : " + pictureMessage.getMessageFileData().getFile().length());
                     Log.i(this.getClass().getName(), "new file path : " + pictureMessage.getMessageFileData().getFile().toPath());
                 }
-                    this.loadBitmapFromFile(pictureMessage, contentImage);
+                this.loadBitmapFromFile(pictureMessage, contentImage);
             }
 
-            repositionMessageGui(pictureMessage,contentImage,view);
+            repositionMessageGui(pictureMessage, contentImage, view);
             scrollView.addView(view);
             this.handleEvents(contentImage);
             this.storeConnectedHashPair(contentImage, pictureMessage);
@@ -518,26 +477,24 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
     /**
      * 0
+     *
      * @param locationMessage
      */
-    private void createLocationMessage(final LocationMessage locationMessage)
-    {
+    private void createLocationMessage(final LocationMessage locationMessage) {
         final LocationMessage text = locationMessage;
         boolean valid = false;
-        if (text != null)
-        {
+        if (text != null) {
             valid = true;
 
         }
         final View view;
 
 
-        LayoutInflater inflater = (LayoutInflater)   this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(R.layout.layout_text_message,myView, false);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = inflater.inflate(R.layout.layout_text_message, myView, false);
 
 
-
-        view.setPadding(0, 50,0,0);
+        view.setPadding(0, 50, 0, 0);
 
         final TextView myText = view.findViewById(R.id.textMessage);
         myText.setOnClickListener(new View.OnClickListener() {
@@ -547,28 +504,23 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                 Log.i(this.getClass().getName(), "Location message clicked");
 
 // Or map
-                Uri location = Uri.parse("http://maps.google.com/maps?" + "daddr=" +Double.toString( locationMessage.getLatitude()) + "," + Double.toString(locationMessage.getLongitude()));
+                Uri location = Uri.parse("http://maps.google.com/maps?" + "daddr=" + locationMessage.getLatitude() + "," + locationMessage.getLongitude());
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
-                Intent chooser = Intent.createChooser(mapIntent,"open with");//maps code
+                Intent chooser = Intent.createChooser(mapIntent, "open with");//maps code
                 startActivity(chooser);
             }
         });
 
         myText.setTextColor(Color.BLUE);
 
-        repositionMessageGui(locationMessage,myText,view);
+        repositionMessageGui(locationMessage, myText, view);
 
 
-        if (valid && text.isMessageSelfDestructed() == false)
-        {
+        if (valid && text.isMessageSelfDestructed() == false) {
             myText.setText(text.getMessage());
-        }
-        else if (text.isMessageSelfDestructed())
-        {
+        } else if (text.isMessageSelfDestructed()) {
             myText.setText("THIS MESSAGE HAS SELF DESTRUCTED");
-        }
-        else
-        {
+        } else {
             myText.setError("Something is wrong");
 
         }
@@ -581,11 +533,9 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     }
 
     /**
-     *
      * @param message
      */
-    private void createFileMessage(final FileMessage message)
-    {
+    private void createFileMessage(final FileMessage message) {
         Log.i(this.getClass().getName(), "File message created");
         final View view;
 
@@ -594,7 +544,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             valid = true;
 
             LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.picture_message, myView,false);
+            view = inflater.inflate(R.layout.picture_message, myView, false);
             final ImageView contentImage = view.findViewById(R.id.PictureMessage);
             final TextView fileText = view.findViewById(R.id.FileNameText);
             fileText.setText(message.getMessageFileData().getFilePath());
@@ -608,13 +558,11 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                             FtpServerConnectInterface.getInstance().startDownloadInteraction(message);
                             Log.i(this.getClass().getName(), "file Clicked");
 
-                        }
-                        else {
+                        } else {
 
                             loadFileelsewhere(message.getMessageFileData().getFile(), FileUtils.getMimeType(message.getMessageFileData().getFile().toPath().toString()));
                         }
-                    }
-                    else {
+                    } else {
                         loadFileelsewhere(message.getMessageFileData().getFile(), FileUtils.getMimeType(message.getMessageFileData().getFile().toPath().toString()));
 
                     }
@@ -622,20 +570,17 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             });
             //backroundMessage.setBackground(getDrawable(R.mipmap.default_messagesbackround_icon_foreground));
 
-            if (message.isMessageSelfDestruct())
-            {
+            if (message.isMessageSelfDestruct()) {
                 contentImage.setImageBitmap(null); // replace with self destruct image
-            }
-            else {
+            } else {
                 Drawable drawable = FileExtensionUtils.retrieveFileDrawable(message.getMessageFileData().getFile().getPath(), this); // file gui
                 contentImage.setImageDrawable(drawable);
             }
-            repositionMessageGui(message,contentImage,view);
+            repositionMessageGui(message, contentImage, view);
             scrollView.addView(view);
             this.handleEvents(contentImage);
             this.storeConnectedHashPair(contentImage, message);
         }
-
 
 
     }
@@ -643,17 +588,14 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * Sends a textual message from the textbox in this activity
      */
-    public void sendMessageFromTextBox()
-    {
+    public void sendMessageFromTextBox() {
         Message prepped = null;
         TextMessage temp = null;
         TextMessage t = new TextMessage("NEEEEEEERRRRRRRRRDDDDD", currentAccount.getAccountInformation(), currentConversation.getAccounts());
         t.setDateSent(LocalDate.now());
         t.setTimeSent(LocalTime.now());
-        if (textBox != null)
-        {
-            if (textBox.getText().length() > 0)
-            {
+        if (textBox != null) {
+            if (textBox.getText().length() > 0) {
                 if (textBox.getText().length() <= CHARACTER_MAX) {
                     String text = textBox.getText().toString();
                     temp = new TextMessage(text, currentAccount.getAccountInformation(), currentConversation.getAccounts());
@@ -662,30 +604,22 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
 
                     textBox.setText(null);
-                    if (sendMessage(temp))
-                    {
+                    if (sendMessage(temp)) {
                         this.loadMessages(true);
                         Log.i(this.getClass().getName(), "Message was sent succesfully");
-                       // scrollView.scrollTo(0, scrollView.getBottom());
+                        // scrollView.scrollTo(0, scrollView.getBottom());
 
 
-                    }
-
-                     else
-                    {
+                    } else {
                         Log.i(this.getClass().getName(), "Message sent failure");
 
                     }
-                }
-                else
-                {
+                } else {
                     // exceeds character max
                     textBox.setError("The max character count is " + CHARACTER_MAX);
                 }
 
-            }
-            else
-            {
+            } else {
                 // emty
                 textBox.setError("Can not send emtry message");
             }
@@ -697,26 +631,21 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * Sends message
      * Called from send message from textbox method
+     *
      * @return
      */
-    public boolean sendMessage(Message message)
-    {
+    public boolean sendMessage(Message message) {
         boolean send = false;
-        if (message != null)
-        {
+        if (message != null) {
             message.setConversationId(currentConversation.getConversationID());
             message.setRecipeints(currentConversation.getAccounts());
             FtpServerConnectInterface.getInstance().registerOnProgressUpdates(new TransferCallbacks());
-            if (MessageHandler.sendMessage(message, currentConversation))
-            {
-                if (message instanceof FileMessage)
-                {
-                    this.createFileMessage((FileMessage)message);
+            if (MessageHandler.sendMessage(message, currentConversation)) {
+                if (message instanceof FileMessage) {
+                    this.createFileMessage((FileMessage) message);
 
-                }
-                else if (message instanceof PictureMessage)
-                {
-                    this.createPictureMessageGui((PictureMessage)message);
+                } else if (message instanceof PictureMessage) {
+                    this.createPictureMessageGui((PictureMessage) message);
                 }
                 Log.i(this.getClass().getName(), "Message id : " + message.getConversationId());
                 message = null; // message was sent
@@ -725,40 +654,31 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                 KeyboardUtils.hideKeyboard(this);
                 return true;
 
-            }
-            else
-            {
-               Log.e(this.getClass().getName(), "Message handler failed to send message");
+            } else {
+                Log.e(this.getClass().getName(), "Message handler failed to send message");
             }
 
-        }
-        else
-        {
+        } else {
             Log.e(this.getClass().getName(), "prepped message is null, line 737");
         }
 
-        return  false;
+        return false;
     }
 
 
-
     /**
-     *
      * @param view
      * @param message
      */
-    private void storeConnectedHashPair(View view, Message message)
-    {
-        uiMessagePairs.put(view,message);
+    private void storeConnectedHashPair(View view, Message message) {
+        uiMessagePairs.put(view, message);
     }
 
 
     /**
-     *
      * @param view
      */
-    private void handleEvents(final View view)
-    {
+    private void handleEvents(final View view) {
         view.setClickable(true);
 
 
@@ -780,17 +700,15 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                 Message message = null;
                 Log.i("Hashmap", "Size : " + uiMessagePairs.size());
                 if (uiMessagePairs.containsKey(v)) {
-                  message =   uiMessagePairs.get(v);
+                    message = uiMessagePairs.get(v);
                     Log.i("Hashmap", "Contains key");
                 }
 
-                MessageOptionsFragment fragment = new MessageOptionsFragment((float) x[0], (float) x[1], v, message, ActivityConversationInterface.this,currentConversation);
+                MessageOptionsFragment fragment = new MessageOptionsFragment((float) x[0], (float) x[1], v, message, ActivityConversationInterface.this, currentConversation);
                 if (fragmentManager.findFragmentByTag(TAG) == null) {
                     fragmentTransaction.add(R.id.main, fragment, TAG);
                     fragmentTransaction.commit();
-                }
-                else
-                {
+                } else {
                     fragmentTransaction.replace(R.id.main, fragment, TAG);
                     fragmentTransaction.commit();
                 }
@@ -810,25 +728,21 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
     }
 
-    public void onFragmentDestroyed(Fragment fragment)
-    {
-        if (fragment.getClass().getName().equals(ImageViewerFragment.class.getName()))
-        {
+    public void onFragmentDestroyed(Fragment fragment) {
+        if (fragment.getClass().getName().equals(ImageViewerFragment.class.getName())) {
             externalMessageLayout.addView(externalMessagePreviewImage);
             externalMessagePreviewImage.setOnClickListener(new ExternalImageClickHandle());
         }
     }
-    public void filterExecute()
-    {
+
+    public void filterExecute() {
 
     }
 
     /**
-     *
      * @param filePath
      */
-    public void handleExternalMessageGui(String filePath)
-    {
+    public void handleExternalMessageGui(String filePath) {
         if (externalMessageLayout != null) {
             externalMessageLayout.setVisibility(View.VISIBLE);
 
@@ -836,22 +750,17 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             if (externalMessagePreviewText != null) {
                 externalMessagePreviewText.setText(filePath);
 
-            }
-            else {
+            } else {
                 Log.e(this.getClass().getName(), "External message Preview Text is null");
             }
 
-            if (externalMessagePreviewImage != null)
-            {
+            if (externalMessagePreviewImage != null) {
                 Drawable drawable = FileExtensionUtils.retrieveFileDrawable(filePath, this);
                 externalMessagePreviewImage.setImageDrawable(drawable);
-            }
-            else
-            {
+            } else {
                 Log.e(this.getClass().getName(), "External message Preview Image is null");
             }
-        }
-        else {
+        } else {
             Log.e(this.getClass().getName(), "External message layout is null");
         }
 
@@ -860,8 +769,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * Clears the external gui thaytt represents both pictures and files
      */
-    public void clearExternalGui()
-    {
+    public void clearExternalGui() {
         externalMessageLayout.setVisibility(View.INVISIBLE);
         externalMessagePreviewText.setText(null);
         externalMessagePreviewImage.setImageDrawable(null);
@@ -870,37 +778,31 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * This is mainly used to pass prepped message objects for both file and picture messages from a fragment.
      * This is its callback method to transfer data
+     *
      * @param data
      */
     @Override
     public void TransferData(Data data) {
 
         Log.i(this.getClass().getName(), "Data recieved of length : " + data.length());
-        if (data.contains(KeyContract.MESSAGE_KEY))
-        {
-             preppedMessage = ((Message)data.getObject(KeyContract.MESSAGE_KEY));
-             preppedMessage.setRecipeints(currentConversation.getAccounts());
+        if (data.contains(KeyContract.MESSAGE_KEY)) {
+            preppedMessage = ((Message) data.getObject(KeyContract.MESSAGE_KEY));
+            preppedMessage.setRecipeints(currentConversation.getAccounts());
             Log.i(this.getClass().getName(), "MEssage sent from data transfter");
 
-            if (preppedMessage instanceof FileMessage)
-            {
-                FileMessage fileMessage = (FileMessage)data.getObject(KeyContract.MESSAGE_KEY);
+            if (preppedMessage instanceof FileMessage) {
+                FileMessage fileMessage = (FileMessage) data.getObject(KeyContract.MESSAGE_KEY);
                 this.handleExternalMessageGui(fileMessage.getMessageFileData().getFile().getAbsolutePath());
                 canSendFile = true;
 
 
-
-            }
-            else if (preppedMessage instanceof  PictureMessage)
-            {
+            } else if (preppedMessage instanceof PictureMessage) {
                 PictureMessage pictureMessage = (PictureMessage) data.getObject(KeyContract.MESSAGE_KEY);
                 pictureMessage.prepMessage(this, progressBar, new TransferCallbacks());
 
 
-            }
-            else if (preppedMessage instanceof LocationMessage)
-            {
-                LocationMessage locationMessage = (LocationMessage)data.getObject(KeyContract.MESSAGE_KEY);
+            } else if (preppedMessage instanceof LocationMessage) {
+                LocationMessage locationMessage = (LocationMessage) data.getObject(KeyContract.MESSAGE_KEY);
                 locationMessage.setSender(AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation());
                 locationMessage.setRecipeints(currentConversation.getAccounts());
                 sendMessage(locationMessage);
@@ -911,11 +813,8 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
     @Override
     public void update() {
-         this.loadMessages(true);
-
-
+        this.loadMessages(true);
     }
-
 
 
     @Override
@@ -941,13 +840,10 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     }
 
 
-    public class ExternalImageClickHandle implements View.OnClickListener
-    {
-        public void onClick(View view)
-        {
+    public class ExternalImageClickHandle implements View.OnClickListener {
+        public void onClick(View view) {
 
-            if (externalMessagePreviewImage.getParent() == null)
-            {
+            if (externalMessagePreviewImage.getParent() == null) {
                 externalMessageLayout.addView(externalMessagePreviewImage);
             }
             float x = externalMessagePreviewImage.getX();
@@ -958,7 +854,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
             ImageViewerFragment fragment = new ImageViewerFragment(externalMessagePreviewImage,
-                    x,y, ActivityConversationInterface.this);
+                    x, y, ActivityConversationInterface.this);
             fragmentTransaction.add(R.id.main, fragment);
             fragmentTransaction.commit();
 
@@ -970,15 +866,14 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
     /**
      * Repositions message ui in accordance to who sends it, Host vs non host
+     *
      * @param view
      * @param backroundMessage
      */
-    private void repositionMessageGui(Message message,final View view, final View backroundMessage)
-    {
+    private void repositionMessageGui(Message message, final View view, final View backroundMessage) {
 
         final int offset = 50;
-        if (message.getSender().equals(AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation()))
-        {
+        if (message.getSender().equals(AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation())) {
 
             backroundMessage.setX(getResources().getDisplayMetrics().widthPixels * 0.4f);
             if (view instanceof TextView) {
@@ -986,10 +881,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             }
 
 
-
-        }
-        else
-        {
+        } else {
 
             backroundMessage.setX(getResources().getDisplayMetrics().widthPixels * 0.05f);
             //backroundMessage.setLayoutParams(new FrameLayout.LayoutParams(width + 50, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -998,14 +890,13 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
             }
 
 
-
         }
 
         ViewTreeObserver vto = backroundMessage.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener (new ViewTreeObserver.OnGlobalLayoutListener() {
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                float xy =  scrollViewParent.getY() - sendMessageBtn.getY();
+                float xy = scrollViewParent.getY() - sendMessageBtn.getY();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     backroundMessage.getViewTreeObserver()
                             .removeOnGlobalLayoutListener(this);
@@ -1013,22 +904,20 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                     backroundMessage.getViewTreeObserver()
                             .removeGlobalOnLayoutListener(this);
                 }
-                int width  = backroundMessage.getWidth();
+                int width = backroundMessage.getWidth();
                 int height = backroundMessage.getHeight();
 
                 LinearLayout.LayoutParams params = null;
-                if (view instanceof ImageView)
-                {
-                    params = (LinearLayout.LayoutParams)backroundMessage.getLayoutParams();
-                }
-                else {
-                params = new LinearLayout.LayoutParams(width + 50, ViewGroup.LayoutParams.WRAP_CONTENT);
+                if (view instanceof ImageView) {
+                    params = (LinearLayout.LayoutParams) backroundMessage.getLayoutParams();
+                } else {
+                    params = new LinearLayout.LayoutParams(width + 50, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
-                    backroundMessage.setPadding(25,25,25,0);
+                    backroundMessage.setPadding(25, 25, 25, 0);
 
                 }
-                params.setMargins(0,25,0,0);
+                params.setMargins(0, 25, 0, 0);
 
                 backroundMessage.setLayoutParams(new LinearLayout.LayoutParams(params));
 
@@ -1045,12 +934,10 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     /**
      * Inner class
      */
-    private class SwipeRefreshFeature implements SwipeRefreshLayout.OnRefreshListener
-    {
+    private class SwipeRefreshFeature implements SwipeRefreshLayout.OnRefreshListener {
         private SwipeTorefreshFragment mSwipeRefresh;
 
-        public void addSwipeFeature ()
-        {
+        public void addSwipeFeature() {
 
             FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -1063,9 +950,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
                 fragment.registerOnRefreshListener(this);
 
                 mSwipeRefresh = fragment;
-            }
-            else
-            {
+            } else {
                 Log.e(this.getClass().getName(), "Attempted to open swipe to refresh fragment when one is already on");
             }
 
@@ -1073,53 +958,53 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
 
 
         @Override
-        public void onRefresh ()
-        {
+        public void onRefresh() {
 
-            loadMessages(true);
+            //loadMessages(true);
             Log.i(this.getClass().getName(), "Swipe called back overridden here");
         }
     }
 
     public interface MessageReadyCallback {
 
-        public void MessageReadyCallback(FileData data);
+        void MessageReadyCallback(FileData data);
 
     }
 
 
-    public void loadBitmapFromFile(final PictureMessage pictureMessage, final ImageView contentImage)
-    {
-        Thread thread = new Thread(new Runnable() {
+    public void loadBitmapFromFile(final PictureMessage pictureMessage, final ImageView contentImage) {
+        AppExecutors.getInstance().getExecutor().submit(new Runnable() {
             @Override
             public void run() {
+                final Bitmap selectedImage = BitmapFactory.decodeFile(pictureMessage.getMessageFileData().getFile().getPath());
+                pictureMessage.setPictureMessage(selectedImage);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        final Bitmap selectedImage = BitmapFactory.decodeFile(pictureMessage.getMessageFileData().getFile().getPath());
-                        pictureMessage.setPictureMessage(selectedImage);
                         contentImage.setImageBitmap(pictureMessage.getPictureMessage());
                     }
                 });
 
             }
         });
-        thread.start();
+
+
         Log.i(this.getClass().getName(), "Thread for loading bitmap started");
 
     }
 
 
-    public void loadFileelsewhere(File file, String type)
-    {
+    /**
+     * @param file
+     * @param type
+     */
+    public void loadFileelsewhere(File file, String type) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
         Intent chooser = Intent.createChooser(intent, "Share");
-
-
         Uri apkURI = FileProvider.getUriForFile(
                 ActivityConversationInterface.this,
                 ActivityConversationInterface.this.getApplicationContext()
@@ -1136,9 +1021,10 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
     }
 
 
-
-    private class TransferCallbacks implements ProgressDataTransferCallback, MessageReadyCallback
-    {
+    /**
+     *
+     */
+    private class TransferCallbacks implements ProgressDataTransferCallback, MessageReadyCallback {
 
         @Override
         public void uploadProgressUpdate(int progress) {
@@ -1154,7 +1040,6 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
         }
 
 
-
         @Override
         public void MessageReadyCallback(FileData data) {
 
@@ -1163,14 +1048,7 @@ public class ActivityConversationInterface extends AppCompatActivity implements 
         }
 
 
-
-
-
-
     }
-
-
-
 
 
 }

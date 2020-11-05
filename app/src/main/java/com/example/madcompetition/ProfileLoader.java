@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.account.profile.Profile;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.account.profile.Profile;
 
 public class ProfileLoader extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.madcompetition.BackEnd.server;
+package com.example.madcompetition.backend.server;
 
 import java.io.Serializable;
 

@@ -9,7 +9,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import com.example.madcompetition.activties.LoginScreenActivity;
-import com.example.madcompetition.BackEnd.AppManager;
+import com.example.madcompetition.backend.AppManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -70,16 +70,16 @@ public class LocationService extends Service {
                 for (Location location : locationResult.getLocations()) {
                     try
                     {
-                        Log.i("Location", "adress :  " + geo.getFromLocation(location.getLatitude(), location.getLongitude(),1).get(0).getAddressLine(0).toString());
+                        Log.i("Location", "adress :  " + geo.getFromLocation(location.getLatitude(), location.getLongitude(),1).get(0).getAddressLine(0));
                     } catch (IOException e)
                     {
-                        Log.i("Error", e.getMessage().toString() +  "From : " + LoginScreenActivity.class.getName());
+                        Log.i("Error", e.getMessage() +  "From : " + LoginScreenActivity.class.getName());
                         e.printStackTrace();
                     }
                     Log.i("Location", location.toString());
                 }
                 Log.i("Location", "Location Updated");
-            };
+            }
         };
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);

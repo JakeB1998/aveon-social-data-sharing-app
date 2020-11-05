@@ -2,7 +2,6 @@ package com.example.madcompetition.activties;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,24 +21,24 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.madcompetition.BackEnd.Interfaces.FragmentDestroyedCallback;
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.utils.Data;
-import com.example.madcompetition.BackEnd.account.friend.Friend;
-import com.example.madcompetition.BackEnd.security.KeyContract;
-import com.example.madcompetition.BackEnd.Interfaces.DataTransferCallback;
-import com.example.madcompetition.BackEnd.utils.MessageUtils;
-import com.example.madcompetition.activties.Fragments.AddFriendFragment;
-import com.example.madcompetition.activties.Fragments.ComposeMessageFragment;
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.messaging.system.Conversation;
-import com.example.madcompetition.BackEnd.messaging.system.Message;
-import com.example.madcompetition.BackEnd.messaging.system.MessageHandler;
-import com.example.madcompetition.BackEnd.Interfaces.MyTimeUpdate;
+import com.example.madcompetition.backend.Interfaces.FragmentDestroyedCallback;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.utils.Data;
+import com.example.madcompetition.backend.account.friend.Friend;
+import com.example.madcompetition.backend.security.KeyContract;
+import com.example.madcompetition.backend.Interfaces.DataTransferCallback;
+import com.example.madcompetition.backend.utils.MessageUtils;
+import com.example.madcompetition.activties.fragments.AddFriendFragment;
+import com.example.madcompetition.activties.fragments.ComposeMessageFragment;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.messaging.system.Conversation;
+import com.example.madcompetition.backend.messaging.system.Message;
+import com.example.madcompetition.backend.messaging.system.MessageHandler;
+import com.example.madcompetition.backend.Interfaces.MyTimeUpdate;
 import com.example.madcompetition.R;
-import com.example.madcompetition.activties.Fragments.FriendListFragment;
-import com.example.madcompetition.activties.Fragments.ProfileLoaderFragment;
+import com.example.madcompetition.activties.fragments.FriendListFragment;
+import com.example.madcompetition.activties.fragments.ProfileLoaderFragment;
 
 import java.util.ArrayList;
 

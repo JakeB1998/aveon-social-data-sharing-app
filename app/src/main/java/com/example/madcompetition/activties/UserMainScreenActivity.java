@@ -4,7 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.madcompetition.BackEnd.AppManager;
+import com.example.madcompetition.backend.AppManager;
 import com.example.madcompetition.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;

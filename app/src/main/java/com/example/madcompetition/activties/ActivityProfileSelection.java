@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -26,24 +25,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.madcompetition.BackEnd.App;
-import com.example.madcompetition.BackEnd.Databases.FeedReaderContract;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.Databases.AccountDatabaseInterface;
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.Databases.FeedReaderDatabase;
-import com.example.madcompetition.BackEnd.messaging.system.TextMessage;
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.MessageType;
-import com.example.madcompetition.BackEnd.server.ServerConnectInterface;
-import com.example.madcompetition.BackEnd.settings.account.AccessibilitySettings;
-import com.example.madcompetition.BackEnd.utils.DeviceUtils;
-import com.example.madcompetition.BackEnd.utils.KeyboardUtils;
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
-import com.example.madcompetition.LocationService;
+import com.example.madcompetition.backend.App;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.databases.AccountDatabaseInterface;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.databases.FeedReaderDatabase;
+import com.example.madcompetition.backend.messaging.system.TextMessage;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.MessageType;
+import com.example.madcompetition.backend.server.ServerConnectInterface;
+import com.example.madcompetition.backend.settings.account.AccessibilitySettings;
+import com.example.madcompetition.backend.utils.DeviceUtils;
+import com.example.madcompetition.backend.utils.KeyboardUtils;
+import com.example.madcompetition.backend.utils.SerializationOperations;
 import com.example.madcompetition.R;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
+import com.example.madcompetition.activties.fragments.SwipeTorefreshFragment;
 
 import java.util.Locale;
 
@@ -61,11 +58,10 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
     private SwipeTorefreshFragment mSwipeRefresh;
 
 
-
     private Bitmap bitmap;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         KeyboardUtils.hideKeyboard(this);
         Log.i("Application", this.getClass().getName() + " : Activtiy oncreate called");
 
@@ -76,7 +72,7 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
         setSupportActionBar(toolbar);
 
         //startActivity(intent);
-       //this.deleteDatabase(FeedReaderDatabase.DATABASE_NAME);
+        //this.deleteDatabase(FeedReaderDatabase.DATABASE_NAME);
         createAccountBtn = findViewById(R.id.CreateAccountBtn);
         mLayout = findViewById(R.id.main);
 
@@ -88,8 +84,8 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
 
 
         importBtn = findViewById(R.id.ImportBtn);
-       // mLayout.removeView(createAccountBtn);
-       // mLayout.removeView(importBtn);
+        // mLayout.removeView(createAccountBtn);
+        // mLayout.removeView(importBtn);
         db = AccountDatabaseInterface.getInstance().getReadableDatabase(this);
 
 
@@ -99,8 +95,8 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
         //createAccountBtn.setY(createAccountBtn.getY() + 100);
 
         //mLayout.addView(importBtn);
-       // mLayout.addView(createAccountBtn);
-        final Intent intentCreate = new Intent(this,ActivityCreateAnAccount.class);
+        // mLayout.addView(createAccountBtn);
+        final Intent intentCreate = new Intent(this, ActivityCreateAnAccount.class);
 
         importBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +111,7 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
 
                 if (DeviceUtils.isNetworkAvailable(ActivityProfileSelection.this)) {
                     startActivity(intentCreate);
-                }
-                else
-                {
+                } else {
                     DeviceUtils.buildAlert(ActivityProfileSelection.this, "You are not connected to the internet");
                 }
             }
@@ -134,42 +128,39 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
     }
 
 
-    private void readInProfiles()
-    {
+    private void readInProfiles() {
         final int accountId = 66666666;
         profiles = AccountDatabaseInterface.getInstance().readData(this);
 
-            if (profiles.length > 0) {
+        if (profiles.length > 0) {
 
-                Log.i("Account", "The number of  accounts read from database : " + Integer.toString(profiles.length));
-              //  Log.i("Account", "The number of  accounts read from database : " + Integer.toString(profiles[0].getAccountID()));
+            Log.i("Account", "The number of  accounts read from database : " + profiles.length);
+            //  Log.i("Account", "The number of  accounts read from database : " + Integer.toString(profiles[0].getAccountID()));
 
-                handleGui();
-            }
+            handleGui();
+        }
 
     }
 
-    private void handleGui()
-    {
+    private void handleGui() {
 
         ImageView profilebutton = null;
         LinearLayout x = null;
         int index = 0;
-        int num =  1;
+        int num = 1;
         for (Account c : profiles) {
             if (c != null) {
                 x = new LinearLayout(this);
                 x.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 400));
                 x.setOrientation(LinearLayout.HORIZONTAL);
-                 x.setTranslationY(50 * num );
+                x.setTranslationY(50 * num);
                 x.setY(x.getY() + 100);
                 x.setX(x.getX() - 200);
                 num++;
 
                 profilebutton = new ImageView(this);
                 profilebutton.setContentDescription(Integer.toString(index));
-                profilebutton.setLayoutParams(new ViewGroup.LayoutParams(400,400));
-
+                profilebutton.setLayoutParams(new ViewGroup.LayoutParams(400, 400));
 
 
                 profilebutton.setOnClickListener(new View.OnClickListener() {
@@ -181,9 +172,9 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
 
 
                 Log.i("DD", this.getLocalClassName());
-                if (bitmap == null)
-                {
-                    if (c.getProfilePicture() != null) {
+                if (bitmap == null) {
+
+                    if (c.getProfile() != null && c.getProfile().getProfileImage() != null) {
                         //profilebutton.setImageBitmap(c.getProfilePicture());
 
 
@@ -192,13 +183,10 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
                         if (AppManager.getInstance().getCurrentAccountLoggedIn() != null) {
                             if (AppManager.getInstance().getCurrentAccountLoggedIn().getProfileBitmap() != null) {
                                 profilebutton.setImageBitmap(AppManager.getInstance().getCurrentAccountLoggedIn().getProfileBitmap());
-                            }
-                            else
-                            {
+                            } else {
                                 profilebutton.setBackground(getDrawable(R.mipmap.default_profile_picture));
                             }
                         }
-
 
 
                     }
@@ -209,7 +197,7 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
                 Drawable d = this.getDrawable(R.drawable.ic_android_black_24dp);
                 profilebutton.setBackground(getDrawable(R.mipmap.default_profile_picture));
 
-                Bitmap m = c.getProfilePicture();
+                Bitmap m = c.getProfile().getProfileImage();
                 //Log.i("Bitmap", c.getProfilePicture().toString());
                 //profilebutton.setImageResource(R.drawable.ic_android_black_24dp);
 
@@ -247,26 +235,21 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
         }
 
 
-
     }
 
-    private void loadLoginActivity(Account account)
-    {
+    private void loadLoginActivity(Account account) {
         //startActivity(new Intent(this, ActivityCreateAnAccount.class));
         AppManager.getInstance().setCurrentAccountLoggedIn(account, this);
         this.loadLanguage();
-        if (AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation() == null)
-        {
+        if (AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation() == null) {
             Account c = AppManager.getInstance().getCurrentAccountLoggedIn();
             c.setAccountInformation(new AccountInformation(AppManager.getInstance().getDeviceAddress(), c.getAccountID(), c.getAccountCredentials(), App.getDeviceID()));
             Log.i(this.getClass().getName(), "Account infro was null on logged in account line 241");
         }
 
 
-
-
         AppManager.getInstance().getCurrentAccountLoggedIn().saveAccount(AppManager.getInstance().getAppContext());
-       ServerConnectInterface.getInstance().startRepeatingTask();
+        ServerConnectInterface.getInstance().startRepeatingTask();
 
         if (AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation().getPersonalInformation() == null) {
             AppManager.getInstance().getCurrentAccountLoggedIn().setPersonalInformation(AppManager.getInstance().getCurrentAccountLoggedIn().getPersonalInformation());
@@ -274,8 +257,8 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
             Log.e(this.getClass().getName(), "Personal info in account info was null. auto corrected");
         }
         AccountInformation[] cc = {AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation()};
-        TextMessage message = new TextMessage("ass",AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(),cc);
-        ClientServerMessage message1 = new ClientServerMessage( AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(),AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(),
+        TextMessage message = new TextMessage("ass", AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(), cc);
+        ClientServerMessage message1 = new ClientServerMessage(AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(), AppManager.getInstance().getCurrentAccountLoggedIn().getAccountInformation(),
                 MessageType.MessageToUser, SerializationOperations.serializeObjectToBtyeArray(message));
         //ServerConnectInterface.getInstance().addClientServerMessageToQue(message1);
 
@@ -294,6 +277,7 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
         super.onRestoreInstanceState(savedInstanceState);
         Log.i("Application", "Activity state restored");
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
@@ -325,8 +309,7 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
         ////
     }
 
-    public void addRefreshFeature()
-    {
+    public void addRefreshFeature() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SwipeTorefreshFragment fragment = new SwipeTorefreshFragment();
@@ -344,21 +327,18 @@ public class ActivityProfileSelection extends AppCompatActivity implements Fragm
     public void onRefresh() {
         Log.i(this.getClass().getName(), "Swipe refresh callback called");
 
-        if (mSwipeRefresh != null)
-        {
+        if (mSwipeRefresh != null) {
             mSwipeRefresh.refreshFinished();
         }
 
     }
 
-    private void loadLanguage()
-    {
+    private void loadLanguage() {
         Locale locale = (AppManager.getInstance().getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings().getSelectedLocale());
         Configuration config = new Configuration(this.getResources().getConfiguration());
         Locale.setDefault(locale);
         config.setLocale(locale);
-        if (AppManager.getInstance().getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings() == null)
-        {
+        if (AppManager.getInstance().getCurrentAccountLoggedIn().getSavedSettings().getAccessibilitySettings() == null) {
             AppManager.getInstance().getCurrentAccountLoggedIn().getSavedSettings().setAccessibilitySettings(new AccessibilitySettings(Locale.US));
             AppManager.getInstance().getCurrentAccountLoggedIn().saveAccount(this);
         }

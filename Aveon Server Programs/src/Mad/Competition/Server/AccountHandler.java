@@ -10,7 +10,7 @@
  */
 package Mad.Competition.Server;
 
-import com.example.madcompetition.BackEnd.account.AccountInformation;
+import com.example.madcompetition.backend.account.AccountInformation;
 
 /**
  * <insert class description here>
