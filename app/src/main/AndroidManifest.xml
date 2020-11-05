@@ -20,7 +20,7 @@
     <application
 
         android:screenOrientation="portrait"
-        android:name=".BackEnd.App"
+        android:name=".backend.App"
         android:allowBackup="true"
         android:excludeFromRecents="true"
         android:icon="@mipmap/ic_launcher"
@@ -89,11 +89,18 @@
             android:label="@string/title_activity_create_an_account_setup_part1"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+
             android:screenOrientation="portrait"
             android:name=".activties.ActivityConversationInterface"
             android:label="@string/title_activity_conversation_interface"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>>
+        </activity>
+
         <activity
             android:screenOrientation="portrait"
             android:name=".activties.ActivityMessagingInterface"

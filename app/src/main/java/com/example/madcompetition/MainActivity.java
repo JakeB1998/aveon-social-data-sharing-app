@@ -2,7 +2,7 @@ package com.example.madcompetition;
 
 import android.os.Bundle;
 
-import com.example.madcompetition.BackEnd.account.profile.Profile;
+import com.example.madcompetition.backend.account.profile.Profile;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activties.Fragments.FriendListFragment">
+    tools:context=".activties.fragments.FriendListFragment">
 
 
 
@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whiteSmoke"
-    tools:context=".activties.Fragments.FriendListFragment">
+    tools:context=".activties.fragments.FriendListFragment">
 
     <TextView
         android:id="@+id/Title"

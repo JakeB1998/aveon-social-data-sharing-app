@@ -8,7 +8,7 @@
     android:layout_gravity="bottom|clip_horizontal|center"
     android:background="@color/whiteSmoke"
     android:foregroundGravity="bottom|center"
-    tools:context=".activties.Fragments.MediaPickerFragment">
+    tools:context=".activties.fragments.MediaPickerFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

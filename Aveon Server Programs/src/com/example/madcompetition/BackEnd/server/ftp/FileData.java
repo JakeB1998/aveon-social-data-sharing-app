@@ -1,4 +1,4 @@
-package com.example.madcompetition.BackEnd.server.ftp;
+package com.example.madcompetition.backend.server.ftp;
 
 import java.io.File;
 import java.io.Serializable;

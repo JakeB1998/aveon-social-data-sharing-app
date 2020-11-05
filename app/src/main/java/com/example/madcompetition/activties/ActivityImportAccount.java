@@ -4,18 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.Databases.AccountDatabaseInterface;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.databases.AccountDatabaseInterface;
 import com.example.madcompetition.R;
-import com.example.madcompetition.BackEnd.server.ServerConnectInterface;
-import com.example.madcompetition.activties.Fragments.FragmentTags;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.madcompetition.activties.fragments.FragmentTags;
+import com.example.madcompetition.activties.fragments.SwipeTorefreshFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -24,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ActivityImportAccount extends AppCompatActivity {
 

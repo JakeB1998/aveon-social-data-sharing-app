@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.Databases.AccountDatabaseInterface;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.databases.AccountDatabaseInterface;
 
 public class ProfileSelectionActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class ProfileSelectionActivity extends AppCompatActivity {
         ImageButton profilebutton = null;
 
         Account[] profiles = null;
-        Log.i("Account", "The number of  accounts read from database : " + Integer.toString(profiles.length));
+        Log.i("Account", "The number of  accounts read from database : " + profiles.length);
        profiles =  AccountDatabaseInterface.getInstance().readData(this);
 
        for (Account c : profiles)

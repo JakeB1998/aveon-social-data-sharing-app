@@ -1,4 +1,4 @@
-package com.example.madcompetition.BackEnd.security;
+package com.example.madcompetition.backend.security;
 
 import java.io.Serializable;
 import java.security.KeyPair;

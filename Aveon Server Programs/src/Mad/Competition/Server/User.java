@@ -6,10 +6,10 @@ import java.io.Serializable;
 import java.net.Inet4Address;
 import java.util.ArrayList;
 
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.security.Credentials;
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.ftp.FileData;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.security.Credentials;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.ftp.FileData;
 
 
 public class User implements Serializable

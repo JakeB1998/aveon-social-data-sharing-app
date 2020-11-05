@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
+import com.example.madcompetition.backend.utils.SerializationOperations;
 
 
 

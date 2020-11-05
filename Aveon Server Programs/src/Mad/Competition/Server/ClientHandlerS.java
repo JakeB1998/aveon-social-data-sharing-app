@@ -32,11 +32,11 @@ import java.util.Timer;
 
 import org.sqlite.core.DB;
 
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.CredentialsRequest;
-import com.example.madcompetition.BackEnd.server.MessageType;
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.CredentialsRequest;
+import com.example.madcompetition.backend.server.MessageType;
+import com.example.madcompetition.backend.utils.SerializationOperations;
 
 /**
  * <insert class description here>

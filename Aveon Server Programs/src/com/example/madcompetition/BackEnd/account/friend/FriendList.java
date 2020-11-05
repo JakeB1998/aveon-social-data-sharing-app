@@ -1,8 +1,8 @@
-package com.example.madcompetition.BackEnd.account.friend;
+package com.example.madcompetition.backend.account.friend;
 
 
-import com.example.madcompetition.BackEnd.account.AccountInformation;
-import com.example.madcompetition.BackEnd.utils.StringUtils;
+import com.example.madcompetition.backend.account.AccountInformation;
+import com.example.madcompetition.backend.utils.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

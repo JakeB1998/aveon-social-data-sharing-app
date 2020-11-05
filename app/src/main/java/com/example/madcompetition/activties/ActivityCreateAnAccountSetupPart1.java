@@ -3,23 +3,21 @@ package com.example.madcompetition.activties;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.madcompetition.BackEnd.AppManager;
-import com.example.madcompetition.BackEnd.Databases.AccountDatabaseInterface;
-import com.example.madcompetition.BackEnd.account.Account;
-import com.example.madcompetition.BackEnd.security.Credentials;
-import com.example.madcompetition.BackEnd.security.Encryption;
-import com.example.madcompetition.BackEnd.messaging.system.Message;
-import com.example.madcompetition.BackEnd.security.KeyContract;
-import com.example.madcompetition.BackEnd.server.ClientServerMessage;
-import com.example.madcompetition.BackEnd.server.MessageSubType;
-import com.example.madcompetition.BackEnd.server.MessageType;
-import com.example.madcompetition.BackEnd.server.ServerConnectInterface;
-import com.example.madcompetition.BackEnd.utils.SerializationOperations;
+import com.example.madcompetition.backend.AppManager;
+import com.example.madcompetition.backend.databases.AccountDatabaseInterface;
+import com.example.madcompetition.backend.account.Account;
+import com.example.madcompetition.backend.security.Credentials;
+import com.example.madcompetition.backend.security.Encryption;
+import com.example.madcompetition.backend.messaging.system.Message;
+import com.example.madcompetition.backend.security.KeyContract;
+import com.example.madcompetition.backend.server.ClientServerMessage;
+import com.example.madcompetition.backend.server.MessageSubType;
+import com.example.madcompetition.backend.server.MessageType;
+import com.example.madcompetition.backend.server.ServerConnectInterface;
+import com.example.madcompetition.backend.utils.SerializationOperations;
 import com.example.madcompetition.R;
-import com.example.madcompetition.activties.Fragments.FragmentTags;
-import com.example.madcompetition.activties.Fragments.SwipeTorefreshFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.madcompetition.activties.fragments.FragmentTags;
+import com.example.madcompetition.activties.fragments.SwipeTorefreshFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -132,14 +130,14 @@ public class ActivityCreateAnAccountSetupPart1 extends AppCompatActivity impleme
             public void onClick(View v) {
                 if (checkData())
                 {
-                    Toast.makeText(ActivityCreateAnAccountSetupPart1.this, "Creating credentialsr", Toast.LENGTH_LONG).show();;
+                    Toast.makeText(ActivityCreateAnAccountSetupPart1.this, "Creating credentialsr", Toast.LENGTH_LONG).show();
                     createCredentials();
                     loadNextActivity();
 
                 }
                 else
                 {
-                    Toast.makeText(ActivityCreateAnAccountSetupPart1.this, "Check data error", Toast.LENGTH_LONG).show();;
+                    Toast.makeText(ActivityCreateAnAccountSetupPart1.this, "Check data error", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -283,13 +281,7 @@ public class ActivityCreateAnAccountSetupPart1 extends AppCompatActivity impleme
 
         Log.i("CreateAccountActivity","Check data finished");
 
-        if (check1 == true && check2 == true && notValid == false) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return check1 == true && check2 == true && notValid == false;
     }
 
     private void loadNextActivity()
