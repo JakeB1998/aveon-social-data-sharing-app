@@ -3,4 +3,9 @@
 ![](https://tokei.rs/b1/github/JakeB1998/aveon-social-data-sharing-app?category=files)
 
 # Aveon-Social-Data-Sharing-App
-This is a messenger application for android that I programmed for State Farms Mobile Application Development competition that ran from February 6th, 2020 to April 6th, 2020. that allows data sharing of all types of data form texts to pictures to location to large files with unlimited size to send over servers while maintaing end-point-to-end-point security. Additionally it is almost a fully decentralized network using edge computing in a cloud architecture. My cloud has a small private block chain network for access control.
+This is a messenger application for android that I programmed for the State Farms Mobile Application Development competition that ran from February 6th, 2020 to April 6th, 2020. this application allows data sharing of all types of data such as texts, pictures, location data, and large files 
+while maintaing end-point-to-end-point security. 
+
+## Disclaimer
+
+Some features have not been implemented due to the time constraints of the competition.
