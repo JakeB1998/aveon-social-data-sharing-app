@@ -6,6 +6,10 @@
 This is a messenger application for android that I programmed for the State Farms Mobile Application Development competition that ran from February 6th, 2020 to April 6th, 2020. this application allows data sharing of all types of data such as texts, pictures, location data, and large files 
 while maintaing end-point-to-end-point security. 
 
+# Structure
+This project contains two server programs and a client program that runs on Android.
+
+
 ## Disclaimer
 
-Some features have not been implemented due to the time constraints of the competition.
+Some features have not been implemented due to the time constraints of the competition. 
